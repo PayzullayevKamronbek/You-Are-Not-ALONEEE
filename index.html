@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DON'T LOOK 👁️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>DON'T LOOK 👁️</h1>
+        <p>Rasmga diqqat bilan qarang...</p>
+
+        <button id="scareButton">BOSING</button>
+    </div>
+
+    <div id="scare" class="scare">
+        <img src="scare.jfif" alt="Horror">
+    </div>
+
+    <script>
+
+        document.getElementById("scareButton").addEventListener("click", function () {
+
+            const scare = document.getElementById("scare");
+
+            scare.style.display = "flex";
+            scare.classList.add("shake");
+
+
+            // 🔊 YANGI HORROR OVOZ
+            const audio = new AudioContext();
+
+            // 1-ovoz
+            let sound1 = audio.createOscillator();
+            let volume1 = audio.createGain();
+
+            sound1.type = "sawtooth";
+            sound1.frequency.setValueAtTime(80, audio.currentTime);
+            sound1.frequency.exponentialRampToValueAtTime(
+                900,
+                audio.currentTime + 0.3
+            );
+
+            volume1.gain.setValueAtTime(0.4, audio.currentTime);
+            volume1.gain.exponentialRampToValueAtTime(
+                0.01,
+                audio.currentTime + 2
+            );
+
+            sound1.connect(volume1);
+            volume1.connect(audio.destination);
+
+            sound1.start();
+            sound1.stop(audio.currentTime + 2);
+
+
+            // 2-ovoz
+            let sound2 = audio.createOscillator();
+            let volume2 = audio.createGain();
+
+            sound2.type = "square";
+            sound2.frequency.setValueAtTime(1500, audio.currentTime);
+            sound2.frequency.exponentialRampToValueAtTime(
+                300,
+                audio.currentTime + 1
+            );
+
+            volume2.gain.setValueAtTime(0.2, audio.currentTime);
+            volume2.gain.exponentialRampToValueAtTime(
+                0.01,
+                audio.currentTime + 1
+            );
+
+            sound2.connect(volume2);
+            volume2.connect(audio.destination);
+
+            sound2.start();
+            sound2.stop(audio.currentTime + 1);
+
+
+            // 3-ovoz
+            let sound3 = audio.createOscillator();
+            let volume3 = audio.createGain();
+
+            sound3.type = "triangle";
+            sound3.frequency.setValueAtTime(400, audio.currentTime);
+            sound3.frequency.exponentialRampToValueAtTime(
+                2000,
+                audio.currentTime + 0.15
+            );
+
+            volume3.gain.setValueAtTime(0.3, audio.currentTime);
+            volume3.gain.exponentialRampToValueAtTime(
+                0.01,
+                audio.currentTime + 0.7
+            );
+
+            sound3.connect(volume3);
+            volume3.connect(audio.destination);
+
+            sound3.start();
+            sound3.stop(audio.currentTime + 0.7);
+
+        });
+
+    </script>
+
+</body>
+</html>
