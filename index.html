@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>YOU ARE NOT ALONE 👁️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>YOU ARE NOT ALONE 👁️</h1>
+
+        <p>Rasmga diqqat bilan qarang...</p>
+
+        <button id="scareButton">BOSING</button>
+
+    </div>
+
+
+    <!-- HORROR EKRAN -->
+
+    <div id="scare" class="scare">
+<div class="shake">
+    <img src="scare.jfif" alt="Horror">
+</div>
+    </div>
+
+
+    <script>
+
+        const button = document.getElementById("scareButton");
+        const scare = document.getElementById("scare");
+        const img = document.querySelector(".scare img");
+
+        // TUGMA
+
+        button.addEventListener("click", function () {
+
+            scare.style.display = "flex";
+
+            // OVOZ
+            const sound = new Audio("harold-screamer.mp3");
+            sound.currentTime = 0;
+            sound.play();
+
+        });
+
+
+        // SICHQONCHA HARAKATI
+
+        document.addEventListener("mousemove", function (e) {
+
+            if (scare.style.display !== "flex") return;
+
+            const x =
+                (e.clientX / window.innerWidth - 0.5) * 40;
+
+            const y =
+                (e.clientY / window.innerHeight - 0.5) * 40;
+
+            img.style.transform =
+                `scale(1.05) translate(${x}px, ${y}px)`;
+
+        });
+const pupils = document.querySelectorAll(".pupil");
+
+document.addEventListener("mousemove", function (e) {
+
+    if (scare.style.display !== "flex") return;
+
+    pupils.forEach(function (pupil) {
+
+        const eye = pupil.parentElement;
+        const rect = eye.getBoundingClientRect();
+
+        const eyeX = rect.left + rect.width / 2;
+        const eyeY = rect.top + rect.height / 2;
+
+        const angle = Math.atan2(
+            e.clientY - eyeY,
+            e.clientX - eyeX
+        );
+
+        const distance = 10;
+
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        pupil.style.transform =
+            `translate(${x}px, ${y}px)`;
+
+    });
+
+});
+
+    </script>
+
+</body>
+</html>
