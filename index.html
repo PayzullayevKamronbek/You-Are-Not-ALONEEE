@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DON'T LOOK 👁️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>DON'T LOOK 👁️</h1>
+        <p>Rasmga diqqat bilan qarang...</p>
+
+        <button id="scareButton">BOSING</button>
+    </div>
+
+    <div id="scare" class="scare">
+        <img src="scare.jfif" alt="Horror">
+    </div>
+
+    <script>
+    document.getElementById("scareButton").addEventListener("click", function () {
+        const scare = document.getElementById("scare");
+
+        // Rasmni chiqarish
+        scare.style.display = "flex";
+        scare.classList.add("shake");
+
+        // Screamer ovozi
+        const sound = new Audio("harold-screamer.mp3");
+        sound.currentTime = 0;
+        sound.play();
+    });
+</script>
+
+</body>
+</html>
